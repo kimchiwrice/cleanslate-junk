@@ -172,13 +172,19 @@
     .cta-section::after { content: ''; position: absolute; inset: 0; background: rgba(13,17,23,0.92); z-index: 0; }
     .cta-section > .container { position: relative; z-index: 1; }
 
-    /* === KEN BURNS HERO ZOOM === */
+    /* === HERO VIDEO === */
+    .hero-visual { overflow: hidden; position: relative; border-radius: var(--radius); }
+    .hero-video { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: 0 24px 48px rgba(0,0,0,0.08); display: block; }
+    .hero-img { display: none; }
+    .hero-visual.no-video .hero-img { display: block; }
+    .hero-visual.no-video .hero-video { display: none; }
+
+    /* === KEN BURNS FALLBACK (when video fails) === */
     @keyframes kenBurns {
       0% { transform: scale(1); }
       100% { transform: scale(1.08); }
     }
-    .hero-visual { overflow: hidden; }
-    .hero-img { animation: kenBurns 20s ease-in-out infinite alternate; }
+    .hero-visual.no-video .hero-img { animation: kenBurns 20s ease-in-out infinite alternate; }
 
     /* === PARALLAX PHOTO BREAKS === */
     .photo-break { background-attachment: fixed; background-size: cover; background-position: center; }
@@ -253,7 +259,8 @@
       .photo-break img { height: 100%; }
       .photo-break-stats { gap: 24px; }
       .photo-break-stat .num { font-size: 1.5rem; }
-      .hero-img { animation-duration: 30s; }
+      .hero-visual.no-video .hero-img { animation-duration: 30s; }
+      .hero-video { aspect-ratio: 4/3; }
     }
   </style>
 </head>
@@ -304,7 +311,10 @@
           </div>
         </div>
         <div class="hero-visual">
-          <img class="hero-img" src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-3.jpg" alt="Professional junk removal crew loading truck" onerror="this.style.display='none';this.parentElement.classList.add('hero-visual--fallback')">
+          <video class="hero-video" autoplay muted loop playsinline poster="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-3.jpg" onerror="this.parentElement.classList.add('no-video')">
+            <source src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e0b9-3a2d-6300-a893-3ce7f26b3c60/motion_2.0-fast_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-0.mp4" type="video/mp4">
+          </video>
+          <img class="hero-img" src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-3.jpg" alt="Professional junk removal crew loading truck">
           <div class="hero-float hero-float-1">
             <div class="hero-float-icon green">✓</div>
             <div>
