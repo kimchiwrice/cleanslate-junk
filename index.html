@@ -656,6 +656,23 @@
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // Force hero video autoplay (Chrome can block autoplay on unfocused tabs)
+    (function() {
+      const heroVideo = document.querySelector('.hero-video');
+      if (!heroVideo) return;
+      function tryPlay() {
+        if (heroVideo.paused) {
+          heroVideo.play().catch(() => {});
+        }
+      }
+      tryPlay();
+      document.addEventListener('visibilitychange', () => {
+        if (!document.hidden) tryPlay();
+      });
+      window.addEventListener('focus', tryPlay);
+      heroVideo.addEventListener('loadeddata', tryPlay);
+    })();
   </script>
 </body>
 </html>
