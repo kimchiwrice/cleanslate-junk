@@ -168,23 +168,17 @@
     .hero-visual--fallback { background: linear-gradient(135deg, var(--accent-pale) 0%, #dbeafe 100%); border-radius: var(--radius); aspect-ratio: 4/3; }
 
     /* === CTA BG IMAGE === */
-    .cta-section { background-image: url('https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-0.jpg'); background-size: cover; background-position: center; }
+    .cta-section { background-image: url('https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e0e0-0aa4-68a0-9d8d-1604d25a0466/lucid-origin_Professional_team_portrait_of_three_junk_removal_workers_standing_confidently_in-0.jpg'); background-size: cover; background-position: center; }
     .cta-section::after { content: ''; position: absolute; inset: 0; background: rgba(13,17,23,0.92); z-index: 0; }
     .cta-section > .container { position: relative; z-index: 1; }
 
-    /* === HERO VIDEO === */
+    /* === HERO IMAGE WITH KEN BURNS === */
     .hero-visual { overflow: hidden; position: relative; border-radius: var(--radius); }
-    .hero-video { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: 0 24px 48px rgba(0,0,0,0.08); display: block; }
-    .hero-img { display: none; }
-    .hero-visual.no-video .hero-img { display: block; }
-    .hero-visual.no-video .hero-video { display: none; }
-
-    /* === KEN BURNS FALLBACK (when video fails) === */
     @keyframes kenBurns {
       0% { transform: scale(1); }
       100% { transform: scale(1.08); }
     }
-    .hero-visual.no-video .hero-img { animation: kenBurns 20s ease-in-out infinite alternate; }
+    .hero-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: 0 24px 48px rgba(0,0,0,0.08); display: block; animation: kenBurns 20s ease-in-out infinite alternate; }
 
     /* === PARALLAX PHOTO BREAKS === */
     .photo-break { background-attachment: fixed; background-size: cover; background-position: center; }
@@ -259,8 +253,7 @@
       .photo-break img { height: 100%; }
       .photo-break-stats { gap: 24px; }
       .photo-break-stat .num { font-size: 1.5rem; }
-      .hero-visual.no-video .hero-img { animation-duration: 30s; }
-      .hero-video { aspect-ratio: 4/3; }
+      .hero-img { animation-duration: 30s; }
     }
   </style>
 </head>
@@ -311,10 +304,7 @@
           </div>
         </div>
         <div class="hero-visual">
-          <video class="hero-video" autoplay muted loop playsinline poster="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-3.jpg" onerror="this.parentElement.classList.add('no-video')">
-            <source src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e0b9-3a2d-6300-a893-3ce7f26b3c60/motion_2.0-fast_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-0.mp4" type="video/mp4">
-          </video>
-          <img class="hero-img" src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-3.jpg" alt="Professional junk removal crew loading truck">
+          <img class="hero-img" src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e0d3-e895-62c0-948e-05c15b995d2f/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-0.jpg" alt="Junk removal crew loading mixed items into truck">
           <div class="hero-float hero-float-1">
             <div class="hero-float-icon green">✓</div>
             <div>
@@ -377,7 +367,7 @@
 
   <!-- PHOTO BREAK -->
   <div class="photo-break">
-    <img src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-2.jpg" alt="Junk removal crew carrying furniture in Sacramento neighborhood" onerror="this.parentElement.classList.add('photo-break--fallback')">
+    <img src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e0d9-b059-6f90-9471-4014011037a2/lucid-origin_aWide_angle_photo_of_a_completely_cleared_out_single_car_garage_in_a_Sacramento_-0.jpg" alt="Cleared out garage after junk removal service in Sacramento" onerror="this.parentElement.classList.add('photo-break--fallback')">
     <div class="photo-break-overlay">
       <h3>Sacramento's most trusted cleanup crew.</h3>
       <p>Every job leaves the space cleaner than you expected.</p>
@@ -474,7 +464,7 @@
 
   <!-- PHOTO BREAK 2 -->
   <div class="photo-break">
-    <img src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13dfbe-1aea-6200-98e6-09e2c8747cd9/lucid-origin_Professional_junk_removal_workers_in_action_two_crew_members_in_clean_navy_blue_-1.jpg" alt="Professional junk hauling team at work" onerror="this.parentElement.classList.add('photo-break--fallback')">
+    <img src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e0dc-af11-6450-a3a0-b910eb62061f/lucid-origin_Overhead_birds_eye_view_looking_down_into_the_open_bed_of_a_junk_removal_truck_c-0.jpg" alt="Overhead view of junk removal truck bed packed with debris" onerror="this.parentElement.classList.add('photo-break--fallback')">
     <div class="photo-break-overlay">
       <h3>No job too big. No item too heavy.</h3>
       <p>From single-item pickups to full estate cleanouts — we've seen it all.</p>
@@ -657,22 +647,6 @@
       });
     });
 
-    // Force hero video autoplay (Chrome can block autoplay on unfocused tabs)
-    (function() {
-      const heroVideo = document.querySelector('.hero-video');
-      if (!heroVideo) return;
-      function tryPlay() {
-        if (heroVideo.paused) {
-          heroVideo.play().catch(() => {});
-        }
-      }
-      tryPlay();
-      document.addEventListener('visibilitychange', () => {
-        if (!document.hidden) tryPlay();
-      });
-      window.addEventListener('focus', tryPlay);
-      heroVideo.addEventListener('loadeddata', tryPlay);
-    })();
   </script>
 </body>
 </html>
