@@ -172,9 +172,67 @@
     .cta-section::after { content: ''; position: absolute; inset: 0; background: rgba(13,17,23,0.92); z-index: 0; }
     .cta-section > .container { position: relative; z-index: 1; }
 
-    /* === SCROLL REVEAL === */
-    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    /* === KEN BURNS HERO ZOOM === */
+    @keyframes kenBurns {
+      0% { transform: scale(1); }
+      100% { transform: scale(1.08); }
+    }
+    .hero-visual { overflow: hidden; }
+    .hero-img { animation: kenBurns 20s ease-in-out infinite alternate; }
+
+    /* === PARALLAX PHOTO BREAKS === */
+    .photo-break { background-attachment: fixed; background-size: cover; background-position: center; }
+    .photo-break img { position: absolute; inset: 0; width: 100%; height: 120%; object-fit: cover; filter: brightness(0.35); will-change: transform; }
+
+    /* === BUTTON MICRO-INTERACTIONS === */
+    .btn-primary { position: relative; overflow: hidden; }
+    .btn-primary::before { content: ''; position: absolute; top: 50%; left: 50%; width: 0; height: 0; background: rgba(255,255,255,0.15); border-radius: 50%; transform: translate(-50%, -50%); transition: width 0.5s ease, height 0.5s ease; }
+    .btn-primary:hover::before { width: 300px; height: 300px; }
+    .btn-primary:active { transform: translateY(0) scale(0.98); }
+
+    /* === CARD HOVER LIFT === */
+    .service-card, .price-card, .testimonial-card { transition: all 0.35s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .service-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(0,0,0,0.08); }
+    .price-card:hover { transform: translateY(-6px); box-shadow: 0 16px 40px rgba(37,99,235,0.12); }
+    .price-card.featured:hover { transform: scale(1.03) translateY(-6px); }
+    .testimonial-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); border-color: var(--accent); }
+
+    /* === FLOATING BADGES ANIMATION === */
+    @keyframes floatBadge {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
+    }
+    .hero-float { animation: floatBadge 4s ease-in-out infinite; }
+    .hero-float-2 { animation-delay: -2s; }
+
+    /* === SCROLL REVEAL (ENHANCED) === */
+    .reveal { opacity: 0; transform: translateY(40px); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
     .reveal.visible { opacity: 1; transform: translateY(0); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .reveal-left.visible { opacity: 1; transform: translateX(0); }
+    .reveal-right { opacity: 0; transform: translateX(40px); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .reveal-right.visible { opacity: 1; transform: translateX(0); }
+    .reveal-scale { opacity: 0; transform: scale(0.92); transition: opacity 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94), transform 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94); }
+    .reveal-scale.visible { opacity: 1; transform: scale(1); }
+
+    /* === COUNT-UP STAT GLOW === */
+    .hero-proof-num, .photo-break-stat .num { transition: color 0.3s ease; }
+
+    /* === NAV LINK UNDERLINE EFFECT === */
+    .nav-links a:not(.nav-cta) { position: relative; }
+    .nav-links a:not(.nav-cta)::after { content: ''; position: absolute; bottom: -4px; left: 0; width: 0; height: 2px; background: var(--accent); border-radius: 2px; transition: width 0.3s ease; }
+    .nav-links a:not(.nav-cta):hover::after { width: 100%; }
+
+    /* === PHOTO BREAK PARALLAX OVERLAY DEPTH === */
+    .photo-break-overlay h3 { text-shadow: 0 2px 20px rgba(0,0,0,0.4); }
+    .photo-break-overlay p { text-shadow: 0 1px 10px rgba(0,0,0,0.3); }
+
+    /* === CTA SECTION GLOW PULSE === */
+    @keyframes ctaGlow {
+      0%, 100% { opacity: 0.15; }
+      50% { opacity: 0.25; }
+    }
+    .cta-section::before { animation: ctaGlow 4s ease-in-out infinite; }
 
     /* === MOBILE === */
     @media (max-width: 768px) {
@@ -191,9 +249,11 @@
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
       .cta-actions { flex-direction: column; align-items: center; }
       .eyebrow { justify-content: center; }
-      .photo-break { height: 280px; }
+      .photo-break { height: 280px; background-attachment: scroll; }
+      .photo-break img { height: 100%; }
       .photo-break-stats { gap: 24px; }
       .photo-break-stat .num { font-size: 1.5rem; }
+      .hero-img { animation-duration: 30s; }
     }
   </style>
 </head>
@@ -331,7 +391,7 @@
   <!-- HOW IT WORKS -->
   <section class="section-padding" id="how">
     <div class="container">
-      <div class="eyebrow reveal">How It Works</div>
+      <div class="eyebrow reveal-left">How It Works</div>
       <h2 class="section-title reveal">Three steps. That's it.</h2>
       <p class="section-desc reveal">No quotes that take a week. No back-and-forth. Just fast, clean removal.</p>
       <div class="steps-grid">
@@ -414,7 +474,7 @@
   <!-- TESTIMONIALS -->
   <section class="section-padding" id="reviews">
     <div class="container">
-      <div class="eyebrow reveal">Reviews</div>
+      <div class="eyebrow reveal-right">Reviews</div>
       <h2 class="section-title reveal">Sacramento trusts CleanSlate.</h2>
       <div class="testimonials-grid">
         <div class="testimonial-card reveal">
@@ -491,17 +551,92 @@
       nav.classList.toggle('scrolled', window.scrollY > 50);
     });
 
-    // Scroll reveal
-    const reveals = document.querySelectorAll('.reveal');
-    const observer = new IntersectionObserver((entries) => {
+    // Enhanced scroll reveal with staggered delays
+    const reveals = document.querySelectorAll('.reveal, .reveal-left, .reveal-right, .reveal-scale');
+    const revealObserver = new IntersectionObserver((entries) => {
       entries.forEach((entry, i) => {
         if (entry.isIntersecting) {
-          setTimeout(() => entry.target.classList.add('visible'), i * 80);
-          observer.unobserve(entry.target);
+          setTimeout(() => entry.target.classList.add('visible'), i * 100);
+          revealObserver.unobserve(entry.target);
         }
       });
     }, { threshold: 0.1 });
-    reveals.forEach(el => observer.observe(el));
+    reveals.forEach(el => revealObserver.observe(el));
+
+    // Count-up animation for stats
+    function animateCountUp(el, target, suffix = '', prefix = '', duration = 2000) {
+      let start = 0;
+      const startTime = performance.now();
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3); // ease-out cubic
+        const current = Math.floor(eased * target);
+        el.textContent = prefix + current.toLocaleString() + suffix;
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // Observe hero proof stats
+    const heroStats = document.querySelectorAll('.hero-proof-num');
+    const heroStatsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = el.textContent.trim();
+          if (text === '500+') animateCountUp(el, 500, '+', '', 2000);
+          else if (text.includes('4.9')) { el.textContent = '0.0★'; animateRating(el); }
+          else if (text === '2hr') animateCountUp(el, 2, 'hr', '', 1200);
+          heroStatsObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    heroStats.forEach(el => heroStatsObserver.observe(el));
+
+    function animateRating(el) {
+      let start = 0;
+      const target = 4.9;
+      const duration = 2000;
+      const startTime = performance.now();
+      function step(currentTime) {
+        const elapsed = currentTime - startTime;
+        const progress = Math.min(elapsed / duration, 1);
+        const eased = 1 - Math.pow(1 - progress, 3);
+        const current = (eased * target).toFixed(1);
+        el.textContent = current + '★';
+        if (progress < 1) requestAnimationFrame(step);
+      }
+      requestAnimationFrame(step);
+    }
+
+    // Observe photo break stats
+    const pbStats = document.querySelectorAll('.photo-break-stat .num');
+    const pbStatsObserver = new IntersectionObserver((entries) => {
+      entries.forEach(entry => {
+        if (entry.isIntersecting) {
+          const el = entry.target;
+          const text = el.textContent.trim();
+          if (text === '500+') animateCountUp(el, 500, '+', '', 2000);
+          else if (text === '60%') animateCountUp(el, 60, '%', '', 1800);
+          pbStatsObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.3 });
+    pbStats.forEach(el => pbStatsObserver.observe(el));
+
+    // Parallax scroll effect for photo breaks
+    const photoBreaks = document.querySelectorAll('.photo-break img');
+    window.addEventListener('scroll', () => {
+      photoBreaks.forEach(img => {
+        const rect = img.parentElement.getBoundingClientRect();
+        if (rect.top < window.innerHeight && rect.bottom > 0) {
+          const scrollPercent = (window.innerHeight - rect.top) / (window.innerHeight + rect.height);
+          const translateY = (scrollPercent - 0.5) * -60;
+          img.style.transform = 'translateY(' + translateY + 'px)';
+        }
+      });
+    }, { passive: true });
 
     // Smooth scroll for anchor links
     document.querySelectorAll('a[href^="#"]').forEach(a => {
@@ -510,4 +645,7 @@
         const target = document.querySelector(a.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
-   
+    });
+  </script>
+</body>
+</html>
