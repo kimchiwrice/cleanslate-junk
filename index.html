@@ -234,6 +234,201 @@
     }
     .cta-section::before { animation: ctaGlow 4s ease-in-out infinite; }
 
+    /* === FILM GRAIN OVERLAY === */
+    body::after {
+      content: '';
+      position: fixed;
+      top: -50%; left: -50%;
+      width: 200%; height: 200%;
+      background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)' opacity='0.04'/%3E%3C/svg%3E");
+      pointer-events: none;
+      z-index: 9999;
+      opacity: 0.5;
+    }
+
+    /* === HERO TEXT SPLIT ANIMATION === */
+    .hero-letter {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(40px) rotateX(40deg);
+      animation: letterIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .hero h1 em .hero-letter { font-style: italic; }
+    @keyframes letterIn {
+      to { opacity: 1; transform: translateY(0) rotateX(0); }
+    }
+    .hero-badge { opacity: 0; animation: badgeFade 0.5s ease forwards 0.1s; }
+    @keyframes badgeFade { to { opacity: 1; } }
+    .hero-sub { opacity: 0; animation: subFade 0.7s ease forwards 1.2s; }
+    @keyframes subFade { to { opacity: 1; } }
+    .hero-actions { opacity: 0; animation: subFade 0.7s ease forwards 1.5s; }
+    .hero-proof { opacity: 0; animation: subFade 0.7s ease forwards 1.8s; }
+
+    /* === SECTION TITLE MASK REVEAL === */
+    .section-title { overflow: hidden; }
+    .section-title.visible .title-word {
+      animation: wordSlide 0.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+    .title-word {
+      display: inline-block;
+      opacity: 0;
+      transform: translateY(100%);
+    }
+    @keyframes wordSlide {
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* === BEFORE/AFTER SLIDER === */
+    .ba-section { padding: 100px 0; background: var(--bg-alt); }
+    .ba-wrapper {
+      position: relative;
+      max-width: 800px;
+      margin: 0 auto;
+      border-radius: var(--radius);
+      overflow: hidden;
+      box-shadow: 0 24px 48px rgba(0,0,0,0.1);
+      cursor: col-resize;
+      -webkit-user-select: none;
+      user-select: none;
+      aspect-ratio: 16/10;
+    }
+    .ba-wrapper img {
+      position: absolute;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      object-fit: cover;
+      pointer-events: none;
+    }
+    .ba-after { clip-path: inset(0 0 0 50%); }
+    .ba-handle {
+      position: absolute;
+      top: 0; bottom: 0;
+      left: 50%;
+      width: 4px;
+      background: #fff;
+      z-index: 10;
+      transform: translateX(-50%);
+      box-shadow: 0 0 12px rgba(0,0,0,0.3);
+    }
+    .ba-handle::before {
+      content: '⟨  ⟩';
+      position: absolute;
+      top: 50%; left: 50%;
+      transform: translate(-50%, -50%);
+      width: 44px; height: 44px;
+      background: #fff;
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 0.75rem;
+      color: var(--text);
+      font-weight: 700;
+      box-shadow: 0 2px 12px rgba(0,0,0,0.2);
+      letter-spacing: -1px;
+    }
+    .ba-label {
+      position: absolute;
+      bottom: 16px;
+      padding: 6px 14px;
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 0.75rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 0.08em;
+      border-radius: 100px;
+      z-index: 5;
+    }
+    .ba-label-before { left: 16px; }
+    .ba-label-after { right: 16px; }
+
+    /* === FAQ ACCORDION === */
+    .faq-section { padding: 100px 0; }
+    .faq-list { max-width: 720px; margin: 40px auto 0; }
+    .faq-item {
+      border-bottom: 1px solid var(--border);
+    }
+    .faq-question {
+      width: 100%;
+      background: none;
+      border: none;
+      padding: 22px 0;
+      font-family: var(--font-display);
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--text);
+      text-align: left;
+      cursor: pointer;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      transition: color 0.2s;
+    }
+    .faq-question:hover { color: var(--accent); }
+    .faq-icon {
+      font-size: 1.4rem;
+      font-weight: 300;
+      transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+      flex-shrink: 0;
+      color: var(--text-3);
+    }
+    .faq-item.open .faq-icon { transform: rotate(45deg); color: var(--accent); }
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), padding 0.3s;
+    }
+    .faq-item.open .faq-answer { max-height: 200px; }
+    .faq-answer p {
+      padding: 0 0 22px;
+      color: var(--text-2);
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* === STICKY MOBILE CTA === */
+    .sticky-cta {
+      display: none;
+      position: fixed;
+      bottom: 0; left: 0; right: 0;
+      z-index: 99;
+      background: var(--bg-dark);
+      padding: 12px 20px;
+      border-top: 1px solid rgba(255,255,255,0.08);
+      backdrop-filter: blur(20px);
+    }
+    .sticky-cta-inner {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      max-width: 600px;
+      margin: 0 auto;
+    }
+    .sticky-cta-text {
+      color: #fff;
+      font-size: 0.82rem;
+      font-weight: 500;
+      line-height: 1.3;
+    }
+    .sticky-cta-text span { color: var(--text-3); font-size: 0.75rem; display: block; }
+    .sticky-cta-btn {
+      display: flex; align-items: center; gap: 8px;
+      background: var(--green);
+      color: #fff;
+      padding: 10px 20px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.85rem;
+      white-space: nowrap;
+      text-decoration: none;
+      transition: background 0.2s;
+      flex-shrink: 0;
+    }
+    .sticky-cta-btn:hover { background: #059669; }
+    .sticky-cta-btn svg { width: 16px; height: 16px; }
+    .sticky-cta.visible { display: block; }
+
     /* === MOBILE === */
     @media (max-width: 768px) {
       .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
@@ -254,6 +449,11 @@
       .photo-break-stats { gap: 24px; }
       .photo-break-stat .num { font-size: 1.5rem; }
       .hero-img { animation-duration: 30s; }
+      .sticky-cta { display: block; opacity: 0; transition: opacity 0.3s; }
+      .sticky-cta.visible { opacity: 1; }
+      body { padding-bottom: 64px; }
+      .ba-wrapper { aspect-ratio: 4/3; }
+      .faq-question { font-size: 0.95rem; }
     }
   </style>
 </head>
@@ -388,6 +588,22 @@
     </div>
   </div>
 
+  <!-- BEFORE / AFTER -->
+  <section class="ba-section">
+    <div class="container">
+      <div class="eyebrow reveal">The Difference</div>
+      <h2 class="section-title reveal">See what a single visit looks like.</h2>
+      <p class="section-desc reveal">Drag the slider to see the before and after.</p>
+      <div class="ba-wrapper" id="baSlider">
+        <img class="ba-before" src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e122-468d-66e0-8c7c-3a7ce89ce15e/lucid-origin_Wide_angle_photo_of_a_cluttered_messy_single_car_garage_in_a_Sacramento_suburban-0.jpg" alt="Cluttered garage before junk removal">
+        <img class="ba-after" src="https://cdn.leonardo.ai/users/ef0f6489-b06e-416a-a309-e33918b28d93/generations/1f13e0d9-b059-6f90-9471-4014011037a2/lucid-origin_aWide_angle_photo_of_a_completely_cleared_out_single_car_garage_in_a_Sacramento_-0.jpg" alt="Clean garage after junk removal">
+        <div class="ba-handle" id="baHandle"></div>
+        <div class="ba-label ba-label-before">Before</div>
+        <div class="ba-label ba-label-after">After</div>
+      </div>
+    </div>
+  </section>
+
   <!-- HOW IT WORKS -->
   <section class="section-padding" id="how">
     <div class="container">
@@ -514,6 +730,40 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section class="faq-section" id="faq">
+    <div class="container">
+      <div class="eyebrow reveal">Common Questions</div>
+      <h2 class="section-title reveal">Got questions? We get these a lot.</h2>
+      <div class="faq-list">
+        <div class="faq-item reveal">
+          <button class="faq-question">Do you charge for the estimate?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Nope. We come out, look at what you need hauled, and give you a flat price. If you don't like the number, no hard feelings — there's zero charge for the visit.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">What areas do you serve?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>We cover Sacramento and the surrounding area — Elk Grove, Folsom, Roseville, Rancho Cordova, Citrus Heights, Natomas, and more. If you're not sure, just give us a call and we'll let you know.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Can I really get same-day pickup?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>If you call before noon, there's a good chance we can get to you the same day. It depends on our schedule, but we always try. Worst case, we'll have you on the books for the next morning.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Do I need to sort everything first?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Not at all. Just show us what needs to go and we take care of the rest. We'll separate out anything that can be donated or recycled.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">What can't you take?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>We can't haul hazardous materials — things like paint, chemicals, asbestos, or medical waste. Pretty much everything else is fair game. If you're not sure, just ask.</p></div>
+        </div>
+        <div class="faq-item reveal">
+          <button class="faq-question">Are you licensed and insured?<span class="faq-icon">+</span></button>
+          <div class="faq-answer"><p>Yes. Fully licensed and insured. Your property is protected and so is our crew. We can provide proof of insurance on request.</p></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CTA -->
   <section class="cta-section" id="cta">
     <div class="container">
@@ -544,6 +794,20 @@
       <div class="footer-copy">© 2026 CleanSlate Junk Removal — Sacramento, CA · Licensed & Insured · Built by <a href="https://trinh-media-site.vercel.app" target="_blank">Trinh Media</a></div>
     </div>
   </footer>
+
+  <!-- STICKY MOBILE CTA -->
+  <div class="sticky-cta" id="stickyCta">
+    <div class="sticky-cta-inner">
+      <div class="sticky-cta-text">
+        CleanSlate Junk Removal
+        <span>Same-day pickup available</span>
+      </div>
+      <a href="tel:+19165550123" class="sticky-cta-btn">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
+        Call Now
+      </a>
+    </div>
+  </div>
 
   <script>
     // Nav scroll effect
@@ -647,6 +911,96 @@
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
     });
+
+    // === HERO TEXT SPLIT ANIMATION ===
+    (function() {
+      const h1 = document.querySelector('.hero h1');
+      if (!h1) return;
+      const html = h1.innerHTML;
+      let delay = 0;
+      const wrap = (text) => {
+        return text.split('').map(char => {
+          if (char === ' ') return ' ';
+          delay += 0.035;
+          return '<span class="hero-letter" style="animation-delay:' + delay.toFixed(3) + 's">' + char + '</span>';
+        }).join('');
+      };
+      // Process text inside and outside <em> and <br>
+      const parts = html.split(/(<em>.*?<\/em>|<br\s*\/?>)/gi);
+      h1.innerHTML = parts.map(part => {
+        if (part.match(/^<br\s*\/?>$/i)) return part;
+        if (part.match(/^<em>/i)) {
+          const inner = part.replace(/<\/?em>/gi, '');
+          return '<em>' + wrap(inner) + '</em>';
+        }
+        return wrap(part);
+      }).join('');
+    })();
+
+    // === SECTION TITLE WORD ANIMATION ===
+    document.querySelectorAll('.section-title').forEach(title => {
+      const html = title.innerHTML;
+      const parts = html.split(/(<br\s*\/?>)/gi);
+      let wordIndex = 0;
+      title.innerHTML = parts.map(part => {
+        if (part.match(/^<br\s*\/?>$/i)) return part;
+        return part.split(/(\s+)/).map(word => {
+          if (word.match(/^\s+$/)) return word;
+          wordIndex++;
+          return '<span class="title-word" style="animation-delay:' + (wordIndex * 0.07) + 's">' + word + '</span>';
+        }).join('');
+      }).join('');
+    });
+
+    // === FAQ ACCORDION ===
+    document.querySelectorAll('.faq-question').forEach(btn => {
+      btn.addEventListener('click', () => {
+        const item = btn.parentElement;
+        const wasOpen = item.classList.contains('open');
+        // Close all others
+        document.querySelectorAll('.faq-item.open').forEach(i => i.classList.remove('open'));
+        if (!wasOpen) item.classList.add('open');
+      });
+    });
+
+    // === BEFORE/AFTER SLIDER ===
+    (function() {
+      const slider = document.getElementById('baSlider');
+      const handle = document.getElementById('baHandle');
+      if (!slider || !handle) return;
+      const afterImg = slider.querySelector('.ba-after');
+      let isDragging = false;
+
+      function updateSlider(x) {
+        const rect = slider.getBoundingClientRect();
+        let pct = ((x - rect.left) / rect.width) * 100;
+        pct = Math.max(2, Math.min(98, pct));
+        handle.style.left = pct + '%';
+        afterImg.style.clipPath = 'inset(0 0 0 ' + pct + '%)';
+      }
+
+      slider.addEventListener('mousedown', (e) => { isDragging = true; updateSlider(e.clientX); });
+      window.addEventListener('mousemove', (e) => { if (isDragging) updateSlider(e.clientX); });
+      window.addEventListener('mouseup', () => { isDragging = false; });
+
+      slider.addEventListener('touchstart', (e) => { isDragging = true; updateSlider(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchmove', (e) => { if (isDragging) updateSlider(e.touches[0].clientX); }, { passive: true });
+      window.addEventListener('touchend', () => { isDragging = false; });
+    })();
+
+    // === STICKY MOBILE CTA (show after scrolling past hero) ===
+    (function() {
+      const stickyCta = document.getElementById('stickyCta');
+      const hero = document.querySelector('.hero');
+      if (!stickyCta || !hero) return;
+      const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (!entry.isIntersecting) stickyCta.classList.add('visible');
+          else stickyCta.classList.remove('visible');
+        });
+      }, { threshold: 0 });
+      observer.observe(hero);
+    })();
 
   </script>
 </body>
