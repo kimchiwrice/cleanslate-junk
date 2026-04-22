@@ -1,0 +1,460 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>CleanSlate Junk Removal — Sacramento's #1 Junk Hauling Service</title>
+  <meta name="description" content="Fast, affordable junk removal in Sacramento. Same-day pickup. Upfront pricing. We haul anything — furniture, appliances, yard waste, construction debris.">
+  <meta property="og:title" content="CleanSlate Junk Removal — Sacramento">
+  <meta property="og:description" content="Fast, affordable junk removal. Same-day pickup. Upfront pricing.">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🧹</text></svg>">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+
+    :root {
+      --bg: #FAFBFC;
+      --bg-alt: #F0F2F5;
+      --bg-dark: #0D1117;
+      --text: #1A1D23;
+      --text-2: #5A6170;
+      --text-3: #8B92A0;
+      --accent: #2563EB;
+      --accent-light: #3B82F6;
+      --accent-pale: #EFF6FF;
+      --green: #10B981;
+      --green-pale: #ECFDF5;
+      --orange: #F59E0B;
+      --border: #E5E7EB;
+      --radius: 16px;
+      --radius-sm: 10px;
+      --font-body: 'Inter', -apple-system, sans-serif;
+      --font-display: 'Space Grotesk', 'Inter', sans-serif;
+    }
+
+    html { scroll-behavior: smooth; -webkit-font-smoothing: antialiased; }
+    body { font-family: var(--font-body); color: var(--text); background: var(--bg); line-height: 1.6; overflow-x: hidden; }
+    img { max-width: 100%; display: block; }
+    a { text-decoration: none; color: inherit; }
+
+    .container { max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .section-padding { padding: 120px 0; }
+    .eyebrow { font-family: var(--font-display); font-size: 0.8rem; font-weight: 600; letter-spacing: 0.12em; text-transform: uppercase; color: var(--accent); margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+    .eyebrow::before { content: ''; width: 32px; height: 2px; background: var(--accent); border-radius: 2px; }
+    .section-title { font-family: var(--font-display); font-size: clamp(2rem, 5vw, 3.2rem); font-weight: 700; line-height: 1.15; letter-spacing: -0.03em; color: var(--text); margin-bottom: 16px; }
+    .section-desc { font-size: 1.05rem; color: var(--text-2); max-width: 560px; line-height: 1.7; }
+
+    /* === NAV === */
+    .nav { position: fixed; top: 0; left: 0; right: 0; z-index: 100; padding: 16px 0; transition: all 0.3s ease; }
+    .nav.scrolled { background: rgba(255,255,255,0.92); backdrop-filter: blur(20px); border-bottom: 1px solid var(--border); padding: 12px 0; }
+    .nav-inner { display: flex; align-items: center; justify-content: space-between; max-width: 1200px; margin: 0 auto; padding: 0 24px; }
+    .nav-logo { font-family: var(--font-display); font-size: 1.3rem; font-weight: 700; color: var(--text); }
+    .nav-logo span { color: var(--accent); }
+    .nav-links { display: flex; align-items: center; gap: 32px; }
+    .nav-links a { font-size: 0.88rem; font-weight: 500; color: var(--text-2); transition: color 0.2s; }
+    .nav-links a:hover { color: var(--accent); }
+    .nav-cta { background: var(--accent); color: #fff !important; padding: 10px 24px; border-radius: 100px; font-weight: 600; font-size: 0.85rem; transition: all 0.2s; }
+    .nav-cta:hover { background: var(--accent-light); transform: translateY(-1px); box-shadow: 0 4px 16px rgba(37,99,235,0.3); }
+
+    /* === HERO === */
+    .hero { min-height: 100vh; display: flex; align-items: center; padding-top: 80px; background: var(--bg); position: relative; overflow: hidden; }
+    .hero::after { content: ''; position: absolute; top: -200px; right: -200px; width: 600px; height: 600px; background: radial-gradient(circle, rgba(37,99,235,0.06) 0%, transparent 70%); pointer-events: none; }
+    .hero-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; }
+    .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: var(--accent-pale); color: var(--accent); padding: 8px 16px; border-radius: 100px; font-size: 0.8rem; font-weight: 600; margin-bottom: 24px; }
+    .hero-badge .dot { width: 8px; height: 8px; background: var(--green); border-radius: 50%; animation: pulse 2s infinite; }
+    @keyframes pulse { 0%, 100% { opacity: 1; } 50% { opacity: 0.4; } }
+    .hero h1 { font-family: var(--font-display); font-size: clamp(2.8rem, 6vw, 4rem); font-weight: 800; line-height: 1.08; letter-spacing: -0.04em; color: var(--text); margin-bottom: 20px; }
+    .hero h1 em { font-style: normal; color: var(--accent); }
+    .hero-sub { font-size: 1.15rem; color: var(--text-2); line-height: 1.7; margin-bottom: 36px; max-width: 480px; }
+    .hero-actions { display: flex; gap: 16px; align-items: center; margin-bottom: 48px; }
+    .btn { display: inline-flex; align-items: center; gap: 8px; padding: 14px 32px; border-radius: 100px; font-weight: 600; font-size: 0.92rem; transition: all 0.25s ease; cursor: pointer; border: none; font-family: var(--font-body); }
+    .btn-primary { background: var(--accent); color: #fff; }
+    .btn-primary:hover { background: var(--accent-light); transform: translateY(-2px); box-shadow: 0 8px 24px rgba(37,99,235,0.25); }
+    .btn-secondary { background: transparent; color: var(--text); border: 1.5px solid var(--border); }
+    .btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
+    .hero-proof { display: flex; gap: 40px; }
+    .hero-proof-item { text-align: left; }
+    .hero-proof-num { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: var(--text); line-height: 1.2; }
+    .hero-proof-label { font-size: 0.78rem; color: var(--text-3); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+
+    .hero-visual { position: relative; }
+    .hero-img { width: 100%; aspect-ratio: 4/3; object-fit: cover; border-radius: var(--radius); box-shadow: 0 24px 48px rgba(0,0,0,0.08); }
+    .hero-float { position: absolute; background: #fff; border-radius: var(--radius-sm); padding: 16px 20px; box-shadow: 0 8px 32px rgba(0,0,0,0.08); display: flex; align-items: center; gap: 12px; }
+    .hero-float-1 { bottom: -20px; left: -20px; }
+    .hero-float-2 { top: -16px; right: -16px; }
+    .hero-float-icon { width: 40px; height: 40px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+    .hero-float-icon.green { background: var(--green-pale); }
+    .hero-float-icon.blue { background: var(--accent-pale); }
+    .hero-float-text { font-size: 0.82rem; font-weight: 600; color: var(--text); }
+    .hero-float-sub { font-size: 0.72rem; color: var(--text-3); font-weight: 400; }
+
+    /* === SERVICES === */
+    .services { background: var(--bg-alt); }
+    .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .service-card { background: #fff; border-radius: var(--radius); padding: 36px; border: 1px solid var(--border); transition: all 0.3s ease; }
+    .service-card:hover { transform: translateY(-4px); box-shadow: 0 12px 32px rgba(0,0,0,0.06); border-color: var(--accent); }
+    .service-icon { width: 52px; height: 52px; border-radius: 14px; background: var(--accent-pale); display: flex; align-items: center; justify-content: center; font-size: 1.4rem; margin-bottom: 20px; }
+    .service-card h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; margin-bottom: 10px; color: var(--text); }
+    .service-card p { font-size: 0.9rem; color: var(--text-2); line-height: 1.65; }
+
+    /* === HOW IT WORKS === */
+    .steps-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; margin-top: 60px; counter-reset: step; }
+    .step { position: relative; }
+    .step::before { counter-increment: step; content: counter(step, decimal-leading-zero); font-family: var(--font-display); font-size: 4rem; font-weight: 800; color: rgba(37,99,235,0.08); line-height: 1; margin-bottom: 16px; display: block; }
+    .step h3 { font-family: var(--font-display); font-size: 1.15rem; font-weight: 600; color: var(--text); margin-bottom: 10px; }
+    .step p { font-size: 0.9rem; color: var(--text-2); line-height: 1.65; }
+    .step-connector { position: absolute; top: 28px; right: -28px; width: 56px; height: 2px; background: linear-gradient(90deg, var(--accent), transparent); opacity: 0.2; }
+
+    /* === PRICING === */
+    .pricing { background: var(--bg-alt); }
+    .pricing-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .price-card { background: #fff; border-radius: var(--radius); padding: 40px 32px; border: 1px solid var(--border); text-align: center; transition: all 0.3s ease; position: relative; }
+    .price-card.featured { border-color: var(--accent); box-shadow: 0 8px 32px rgba(37,99,235,0.1); transform: scale(1.03); }
+    .price-card.featured::before { content: 'MOST POPULAR'; position: absolute; top: -12px; left: 50%; transform: translateX(-50%); background: var(--accent); color: #fff; font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em; padding: 4px 16px; border-radius: 100px; }
+    .price-card h3 { font-family: var(--font-display); font-size: 1.1rem; font-weight: 600; color: var(--text); margin-bottom: 4px; }
+    .price-card .price-desc { font-size: 0.82rem; color: var(--text-3); margin-bottom: 20px; }
+    .price-amount { font-family: var(--font-display); font-size: 2.8rem; font-weight: 800; color: var(--text); line-height: 1.2; }
+    .price-amount span { font-size: 1rem; font-weight: 500; color: var(--text-3); }
+    .price-list { list-style: none; margin: 24px 0 32px; text-align: left; }
+    .price-list li { font-size: 0.88rem; color: var(--text-2); padding: 8px 0; display: flex; align-items: center; gap: 10px; }
+    .price-list li::before { content: '✓'; color: var(--green); font-weight: 700; font-size: 0.9rem; }
+    .price-card .btn { width: 100%; justify-content: center; }
+
+    /* === TESTIMONIALS === */
+    .testimonials-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; margin-top: 48px; }
+    .testimonial-card { background: var(--bg-alt); border-radius: var(--radius); padding: 32px; border: 1px solid var(--border); }
+    .testimonial-stars { color: var(--orange); font-size: 0.9rem; letter-spacing: 2px; margin-bottom: 16px; }
+    .testimonial-text { font-size: 0.92rem; color: var(--text-2); line-height: 1.7; margin-bottom: 20px; font-style: italic; }
+    .testimonial-author { display: flex; align-items: center; gap: 12px; }
+    .testimonial-avatar { width: 40px; height: 40px; border-radius: 50%; background: var(--accent); display: flex; align-items: center; justify-content: center; color: #fff; font-weight: 700; font-size: 0.8rem; }
+    .testimonial-name { font-weight: 600; font-size: 0.88rem; color: var(--text); }
+    .testimonial-loc { font-size: 0.75rem; color: var(--text-3); }
+
+    /* === CTA === */
+    .cta-section { background: var(--bg-dark); padding: 100px 0; text-align: center; position: relative; overflow: hidden; }
+    .cta-section::before { content: ''; position: absolute; top: -100px; left: 50%; transform: translateX(-50%); width: 800px; height: 400px; background: radial-gradient(ellipse, rgba(37,99,235,0.15) 0%, transparent 70%); pointer-events: none; }
+    .cta-section .section-title { color: #fff; }
+    .cta-section .section-desc { color: rgba(255,255,255,0.6); margin: 0 auto 36px; }
+    .cta-actions { display: flex; gap: 16px; justify-content: center; }
+    .cta-phone { font-family: var(--font-display); font-size: 1.8rem; font-weight: 700; color: #fff; margin-bottom: 8px; }
+    .cta-or { color: rgba(255,255,255,0.3); font-size: 0.82rem; margin-bottom: 24px; }
+
+    /* === FOOTER === */
+    .footer { background: var(--bg-dark); border-top: 1px solid rgba(255,255,255,0.06); padding: 48px 0 32px; }
+    .footer-inner { display: flex; justify-content: space-between; align-items: center; }
+    .footer-brand { font-family: var(--font-display); font-weight: 700; color: #fff; font-size: 1.1rem; }
+    .footer-brand span { color: var(--accent); }
+    .footer-links { display: flex; gap: 24px; }
+    .footer-links a { font-size: 0.82rem; color: rgba(255,255,255,0.4); transition: color 0.2s; }
+    .footer-links a:hover { color: #fff; }
+    .footer-copy { text-align: center; padding-top: 32px; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.75rem; color: rgba(255,255,255,0.25); }
+    .footer-copy a { color: var(--accent-light); }
+
+    /* === SCROLL REVEAL === */
+    .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* === MOBILE === */
+    @media (max-width: 768px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
+      .hero-sub { margin: 0 auto 36px; }
+      .hero-actions { justify-content: center; flex-wrap: wrap; }
+      .hero-proof { justify-content: center; }
+      .hero-visual { order: -1; }
+      .hero-float { display: none; }
+      .services-grid, .steps-grid, .pricing-grid, .testimonials-grid { grid-template-columns: 1fr; }
+      .price-card.featured { transform: none; }
+      .step-connector { display: none; }
+      .nav-links { display: none; }
+      .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
+      .cta-actions { flex-direction: column; align-items: center; }
+      .eyebrow { justify-content: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav class="nav" id="nav">
+    <div class="nav-inner">
+      <a href="#" class="nav-logo">Clean<span>Slate</span></a>
+      <div class="nav-links">
+        <a href="#services">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="#reviews">Reviews</a>
+        <a href="#cta" class="nav-cta">Book Pickup</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="container">
+      <div class="hero-grid">
+        <div>
+          <div class="hero-badge">
+            <span class="dot"></span>
+            Same-Day Pickup Available
+          </div>
+          <h1>Sacramento's fastest<br>junk <em>gone.</em></h1>
+          <p class="hero-sub">We show up on time, give you a price on the spot, and haul everything away. No hidden fees. No waiting around. Just a clean space.</p>
+          <div class="hero-actions">
+            <a href="#cta" class="btn btn-primary">Book Free Estimate →</a>
+            <a href="tel:+19165550123" class="btn btn-secondary">Call (916) 555-0123</a>
+          </div>
+          <div class="hero-proof">
+            <div class="hero-proof-item">
+              <div class="hero-proof-num">500+</div>
+              <div class="hero-proof-label">Jobs Done</div>
+            </div>
+            <div class="hero-proof-item">
+              <div class="hero-proof-num">4.9★</div>
+              <div class="hero-proof-label">Google Rating</div>
+            </div>
+            <div class="hero-proof-item">
+              <div class="hero-proof-num">2hr</div>
+              <div class="hero-proof-label">Avg Response</div>
+            </div>
+          </div>
+        </div>
+        <div class="hero-visual">
+          <img class="hero-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Junk removal truck loaded and ready">
+          <div class="hero-float hero-float-1">
+            <div class="hero-float-icon green">✓</div>
+            <div>
+              <div class="hero-float-text">Eco-Friendly</div>
+              <div class="hero-float-sub">60% recycled or donated</div>
+            </div>
+          </div>
+          <div class="hero-float hero-float-2">
+            <div class="hero-float-icon blue">⚡</div>
+            <div>
+              <div class="hero-float-text">Same Day</div>
+              <div class="hero-float-sub">Book by noon, gone by 5</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services section-padding" id="services">
+    <div class="container">
+      <div class="eyebrow reveal">What We Haul</div>
+      <h2 class="section-title reveal">If you can point at it,<br>we can haul it.</h2>
+      <p class="section-desc reveal">Residential, commercial, or construction — no job too big or weird.</p>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-icon">🛋️</div>
+          <h3>Furniture & Appliances</h3>
+          <p>Couches, fridges, mattresses, washers — the heavy stuff you can't fit in your car. We handle it all.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">🏗️</div>
+          <h3>Construction Debris</h3>
+          <p>Drywall, lumber, concrete, tile. We clean up after your remodel so the contractors don't have to.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">🌿</div>
+          <h3>Yard Waste</h3>
+          <p>Branches, stumps, dirt, old fencing. Backyard looking rough? We'll make it look like nothing happened.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">📦</div>
+          <h3>Garage Cleanouts</h3>
+          <p>Years of stuff piled up? We'll clear it out in one trip. You don't even have to sort it — just point.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">🏢</div>
+          <h3>Commercial & Office</h3>
+          <p>Old desks, filing cabinets, e-waste, warehouse junk. We work around your schedule, not ours.</p>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-icon">♻️</div>
+          <h3>Donation Pickup</h3>
+          <p>Still-good stuff goes to local charities. We sort, we donate, and you get the tax receipt.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- HOW IT WORKS -->
+  <section class="section-padding" id="how">
+    <div class="container">
+      <div class="eyebrow reveal">How It Works</div>
+      <h2 class="section-title reveal">Three steps. That's it.</h2>
+      <p class="section-desc reveal">No quotes that take a week. No back-and-forth. Just fast, clean removal.</p>
+      <div class="steps-grid">
+        <div class="step reveal">
+          <div class="step-connector"></div>
+          <h3>Book online or call</h3>
+          <p>Pick a 2-hour window that works for you. We'll confirm within 15 minutes. Same-day available if you book by noon.</p>
+        </div>
+        <div class="step reveal">
+          <div class="step-connector"></div>
+          <h3>We quote on the spot</h3>
+          <p>Our crew arrives, looks at what needs to go, and gives you an exact price. No surprises. Don't like it? No charge for the visit.</p>
+        </div>
+        <div class="step reveal">
+          <h3>We haul it. You relax.</h3>
+          <p>We load everything, sweep up, and you're done. Most jobs take under an hour. Pay after the truck is loaded.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PRICING -->
+  <section class="pricing section-padding" id="pricing">
+    <div class="container">
+      <div class="eyebrow reveal">Transparent Pricing</div>
+      <h2 class="section-title reveal">No hidden fees. Ever.</h2>
+      <p class="section-desc reveal">Based on how much space your junk takes in our truck. That's it.</p>
+      <div class="pricing-grid">
+        <div class="price-card reveal">
+          <h3>Small Load</h3>
+          <p class="price-desc">1/4 truck or less</p>
+          <div class="price-amount">$149<span> flat</span></div>
+          <ul class="price-list">
+            <li>Perfect for a few items</li>
+            <li>1-2 pieces of furniture</li>
+            <li>Small appliance removal</li>
+            <li>Same-day available</li>
+          </ul>
+          <a href="#cta" class="btn btn-secondary">Book Small Load</a>
+        </div>
+        <div class="price-card featured reveal">
+          <h3>Half Truck</h3>
+          <p class="price-desc">Most common size</p>
+          <div class="price-amount">$299<span> flat</span></div>
+          <ul class="price-list">
+            <li>Garage or room cleanout</li>
+            <li>Multiple furniture pieces</li>
+            <li>Construction debris</li>
+            <li>Same-day available</li>
+            <li>Free donation sorting</li>
+          </ul>
+          <a href="#cta" class="btn btn-primary">Book Half Truck</a>
+        </div>
+        <div class="price-card reveal">
+          <h3>Full Truck</h3>
+          <p class="price-desc">The big jobs</p>
+          <div class="price-amount">$499<span> flat</span></div>
+          <ul class="price-list">
+            <li>Full property cleanout</li>
+            <li>Estate or move-out</li>
+            <li>Heavy construction debris</li>
+            <li>Priority scheduling</li>
+            <li>Free donation sorting</li>
+          </ul>
+          <a href="#cta" class="btn btn-secondary">Book Full Truck</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="section-padding" id="reviews">
+    <div class="container">
+      <div class="eyebrow reveal">Reviews</div>
+      <h2 class="section-title reveal">Sacramento trusts CleanSlate.</h2>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"Called at 9am, they were here by 11. Took everything out of my garage in 45 minutes. The place looks brand new. Best money I've spent all year."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">MR</div>
+            <div>
+              <div class="testimonial-name">Marcus R.</div>
+              <div class="testimonial-loc">East Sacramento</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"We had a full renovation's worth of debris. They quoted us on the spot, no games. Price was exactly what they said. Will use again 100%."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">JL</div>
+            <div>
+              <div class="testimonial-name">Jennifer L.</div>
+              <div class="testimonial-loc">Folsom</div>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal">
+          <div class="testimonial-stars">★★★★★</div>
+          <p class="testimonial-text">"My mom passed and we needed to clear her house. They were respectful, fast, and donated everything they could. Can't recommend enough."</p>
+          <div class="testimonial-author">
+            <div class="testimonial-avatar">DT</div>
+            <div>
+              <div class="testimonial-name">David T.</div>
+              <div class="testimonial-loc">Elk Grove</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA -->
+  <section class="cta-section" id="cta">
+    <div class="container">
+      <h2 class="section-title reveal">Ready to clear the space?</h2>
+      <p class="section-desc reveal">Book your free estimate or call us directly. Same-day pickup available.</p>
+      <div class="cta-phone reveal">(916) 555-0123</div>
+      <div class="cta-or reveal">— or —</div>
+      <div class="cta-actions reveal">
+        <a href="mailto:hello@cleanslatesac.com" class="btn btn-primary">Book Free Estimate →</a>
+        <a href="#services" class="btn btn-secondary" style="border-color: rgba(255,255,255,0.15); color: #fff;">View Services</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <div class="footer-brand">Clean<span>Slate</span></div>
+        <div class="footer-links">
+          <a href="#services">Services</a>
+          <a href="#how">How It Works</a>
+          <a href="#pricing">Pricing</a>
+          <a href="#reviews">Reviews</a>
+        </div>
+      </div>
+      <div class="footer-copy">© 2026 CleanSlate Junk Removal — Sacramento, CA · Built by <a href="https://trinh-media-site.vercel.app" target="_blank">Trinh Media</a></div>
+    </div>
+  </footer>
+
+  <script>
+    // Nav scroll effect
+    const nav = document.getElementById('nav');
+    window.addEventListener('scroll', () => {
+      nav.classList.toggle('scrolled', window.scrollY > 50);
+    });
+
+    // Scroll reveal
+    const reveals = document.querySelectorAll('.reveal');
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry, i) => {
+        if (entry.isIntersecting) {
+          setTimeout(() => entry.target.classList.add('visible'), i * 80);
+          observer.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.1 });
+    reveals.forEach(el => observer.observe(el));
+
+    // Smooth scroll for anchor links
+    document.querySelectorAll('a[href^="#"]').forEach(a => {
+      a.addEventListener('click', e => {
+        e.preventDefault();
+        const target = document.querySelector(a.getAttribute('href'));
+        if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      });
+    });
+  </script>
+</body>
+</html>
