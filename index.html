@@ -151,6 +151,27 @@
     .footer-copy { text-align: center; padding-top: 32px; margin-top: 32px; border-top: 1px solid rgba(255,255,255,0.06); font-size: 0.75rem; color: rgba(255,255,255,0.25); }
     .footer-copy a { color: var(--accent-light); }
 
+    /* === PHOTO BREAK === */
+    .photo-break { position: relative; height: 360px; overflow: hidden; }
+    .photo-break img { width: 100%; height: 100%; object-fit: cover; filter: brightness(0.35); }
+    .photo-break-overlay { position: absolute; inset: 0; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 24px; z-index: 2; }
+    .photo-break-overlay h3 { font-family: var(--font-display); font-size: clamp(1.6rem, 4vw, 2.4rem); font-weight: 700; color: #fff; letter-spacing: -0.02em; margin-bottom: 8px; }
+    .photo-break-overlay p { font-size: 1rem; color: rgba(255,255,255,0.65); max-width: 480px; }
+    .photo-break-stats { display: flex; gap: 48px; margin-top: 28px; }
+    .photo-break-stat { text-align: center; }
+    .photo-break-stat .num { font-family: var(--font-display); font-size: 2rem; font-weight: 800; color: #fff; }
+    .photo-break-stat .label { font-size: 0.72rem; color: rgba(255,255,255,0.5); text-transform: uppercase; letter-spacing: 0.1em; font-weight: 600; }
+    .photo-break--fallback { background: linear-gradient(135deg, #1e3a5f 0%, #0d1117 100%); }
+    .photo-break--fallback img { display: none; }
+
+    /* === HERO FALLBACK === */
+    .hero-visual--fallback { background: linear-gradient(135deg, var(--accent-pale) 0%, #dbeafe 100%); border-radius: var(--radius); aspect-ratio: 4/3; }
+
+    /* === CTA BG IMAGE === */
+    .cta-section { background-image: url('https://images.pexels.com/photos/7843999/pexels-photo-7843999.jpeg?auto=compress&cs=tinysrgb&w=1200'); background-size: cover; background-position: center; }
+    .cta-section::after { content: ''; position: absolute; inset: 0; background: rgba(13,17,23,0.92); z-index: 0; }
+    .cta-section > .container { position: relative; z-index: 1; }
+
     /* === SCROLL REVEAL === */
     .reveal { opacity: 0; transform: translateY(30px); transition: opacity 0.7s ease, transform 0.7s ease; }
     .reveal.visible { opacity: 1; transform: translateY(0); }
@@ -170,6 +191,9 @@
       .footer-inner { flex-direction: column; gap: 20px; text-align: center; }
       .cta-actions { flex-direction: column; align-items: center; }
       .eyebrow { justify-content: center; }
+      .photo-break { height: 280px; }
+      .photo-break-stats { gap: 24px; }
+      .photo-break-stat .num { font-size: 1.5rem; }
     }
   </style>
 </head>
@@ -220,7 +244,7 @@
           </div>
         </div>
         <div class="hero-visual">
-          <img class="hero-img" src="https://images.unsplash.com/photo-1558618666-fcd25c85f82e?w=800&q=80" alt="Junk removal truck loaded and ready">
+          <img class="hero-img" src="https://images.pexels.com/photos/4489417/pexels-photo-4489417.jpeg?auto=compress&cs=tinysrgb&w=800" alt="Professional junk removal crew loading truck" onerror="this.style.display='none';this.parentElement.classList.add('hero-visual--fallback')">
           <div class="hero-float hero-float-1">
             <div class="hero-float-icon green">✓</div>
             <div>
@@ -280,6 +304,29 @@
       </div>
     </div>
   </section>
+
+  <!-- PHOTO BREAK -->
+  <div class="photo-break">
+    <img src="https://images.pexels.com/photos/4246120/pexels-photo-4246120.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Clean organized space after junk removal" onerror="this.parentElement.classList.add('photo-break--fallback')">
+    <div class="photo-break-overlay">
+      <h3>Sacramento's most trusted cleanup crew.</h3>
+      <p>Every job leaves the space cleaner than you expected.</p>
+      <div class="photo-break-stats">
+        <div class="photo-break-stat">
+          <div class="num">500+</div>
+          <div class="label">Jobs Done</div>
+        </div>
+        <div class="photo-break-stat">
+          <div class="num">60%</div>
+          <div class="label">Recycled</div>
+        </div>
+        <div class="photo-break-stat">
+          <div class="num">Same Day</div>
+          <div class="label">Turnaround</div>
+        </div>
+      </div>
+    </div>
+  </div>
 
   <!-- HOW IT WORKS -->
   <section class="section-padding" id="how">
@@ -354,6 +401,15 @@
       </div>
     </div>
   </section>
+
+  <!-- PHOTO BREAK 2 -->
+  <div class="photo-break">
+    <img src="https://images.pexels.com/photos/4971228/pexels-photo-4971228.jpeg?auto=compress&cs=tinysrgb&w=1200" alt="Team working together on removal project" onerror="this.parentElement.classList.add('photo-break--fallback')">
+    <div class="photo-break-overlay">
+      <h3>No job too big. No item too heavy.</h3>
+      <p>From single-item pickups to full estate cleanouts — we've seen it all.</p>
+    </div>
+  </div>
 
   <!-- TESTIMONIALS -->
   <section class="section-padding" id="reviews">
@@ -454,7 +510,4 @@
         const target = document.querySelector(a.getAttribute('href'));
         if (target) target.scrollIntoView({ behavior: 'smooth', block: 'start' });
       });
-    });
-  </script>
-</body>
-</html>
+   
