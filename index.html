@@ -486,7 +486,7 @@
           <p class="hero-sub">We pull up, give you an honest price on the spot, and load it all ourselves. You don't lift a finger. Serving Sacramento, Elk Grove, Folsom, Roseville & surrounding areas.</p>
           <div class="hero-actions">
             <a href="#cta" class="btn btn-primary">Get a Free Quote →</a>
-            <a href="tel:+19165550123" class="btn btn-secondary">Call (916) 555-0123</a>
+            <a href="tel:+19168297483" class="btn btn-secondary">Call (916) 829-7483</a>
           </div>
           <div class="hero-proof">
             <div class="hero-proof-item">
@@ -769,7 +769,7 @@
     <div class="container">
       <h2 class="section-title reveal">Let's get it out of your way.</h2>
       <p class="section-desc reveal">Call, text, or send us a message. We'll get back to you quick.</p>
-      <div class="cta-phone reveal">(916) 555-0123</div>
+      <div class="cta-phone reveal">(916) 829-7483</div>
       <div class="cta-or reveal">— or —</div>
       <div class="cta-actions reveal">
         <a href="mailto:hello@cleanslatesac.com" class="btn btn-primary">Send Us a Message →</a>
@@ -802,7 +802,7 @@
         CleanSlate Junk Removal
         <span>Same-day pickup available</span>
       </div>
-      <a href="tel:+19165550123" class="sticky-cta-btn">
+      <a href="tel:+19168297483" class="sticky-cta-btn">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M22 16.92v3a2 2 0 01-2.18 2 19.79 19.79 0 01-8.63-3.07 19.5 19.5 0 01-6-6 19.79 19.79 0 01-3.07-8.67A2 2 0 014.11 2h3a2 2 0 012 1.72c.127.96.361 1.903.7 2.81a2 2 0 01-.45 2.11L8.09 9.91a16 16 0 006 6l1.27-1.27a2 2 0 012.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0122 16.92z"/></svg>
         Call Now
       </a>
@@ -889,6 +889,24 @@
       });
     }, { threshold: 0.3 });
     pbStats.forEach(el => pbStatsObserver.observe(el));
+
+    // Failsafe: force all stats to final values after 5s or on tab visibility
+    function forceStatValues() {
+      document.querySelectorAll('.hero-proof-num').forEach(el => {
+        const text = el.textContent.trim();
+        if (text.startsWith('0') || text === '500+' || text === '2hr' || text === '4.9★') return;
+        // Already correct
+      });
+      // Force known targets
+      const stats = document.querySelectorAll('.hero-proof-num');
+      if (stats[0]) stats[0].textContent = '500+';
+      if (stats[1]) stats[1].textContent = '4.9★';
+      if (stats[2]) stats[2].textContent = '2hr';
+    }
+    setTimeout(forceStatValues, 5000);
+    document.addEventListener('visibilitychange', () => {
+      if (document.visibilityState === 'visible') forceStatValues();
+    });
 
     // Parallax scroll effect for photo breaks
     const photoBreaks = document.querySelectorAll('.photo-break img');
